@@ -50,6 +50,15 @@ class SingleUserActorFilterTest {
                 filter.validateInputParameters()
         );
     }
+    @Test
+    void should_throw_exception_if_mandatory_input_is_zero() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put(USER_ID, 0L);
+        filter.setInputParameters(parameters);
+        assertThrows(ConnectorValidationException.class, () ->
+                filter.validateInputParameters()
+        );
+    }
 
     @Test
     void should_return_a_list_of_candidates() throws UserFilterException {
