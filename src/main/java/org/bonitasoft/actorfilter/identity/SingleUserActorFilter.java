@@ -13,7 +13,7 @@ import static java.util.Collections.singletonList;
  */
 public class SingleUserActorFilter extends AbstractUserFilter {
 
-    public static final String USER_ID = "userId";
+    static final String USER_ID = "userId";
 
     @Override
     public void validateInputParameters() throws ConnectorValidationException {

@@ -1,17 +1,12 @@
 package org.bonitasoft.actorfilter.identity;
 
-import org.bonitasoft.engine.api.APIAccessor;
-import org.bonitasoft.engine.api.ProcessAPI;
 import org.bonitasoft.engine.connector.ConnectorValidationException;
-import org.bonitasoft.engine.connector.EngineExecutionContext;
 import org.bonitasoft.engine.filter.UserFilterException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
@@ -21,7 +16,6 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.bonitasoft.actorfilter.identity.SingleUserActorFilter.USER_ID;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
@@ -29,20 +23,6 @@ class SingleUserActorFilterTest {
 
     @InjectMocks
     private SingleUserActorFilter filter;
-
-    @Mock(lenient = true)
-    private APIAccessor apiAccessor;
-    @Mock(lenient = true)
-    private ProcessAPI processApi;
-
-    @Mock(lenient = true)
-    private EngineExecutionContext executionContext;
-
-    @BeforeEach
-    void setUp() {
-        when(apiAccessor.getProcessAPI()).thenReturn(processApi);
-        when(executionContext.getProcessDefinitionId()).thenReturn(1L);
-    }
 
     @Test
     void should_throw_exception_if_mandatory_input_is_missing() {
