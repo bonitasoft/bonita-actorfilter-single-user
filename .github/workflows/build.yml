@@ -2,28 +2,41 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - support/*
+    paths-ignore:
+      - '.github/**'
+      - '!.github/workflows/build.yml'
+      - '**/*.md'
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - support/*
+    paths-ignore:
+      - '.github/**'
+      - '!.github/workflows/build.yml'
+      - '**/*.md'
 
 jobs:
   build:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # required by Sonar to get the blame information
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           java-version: 17
           distribution: temurin
           cache: maven
 
       - name: Extract secrets from Keeper
-        uses: Keeper-Security/ksm-action@v1
+        uses: Keeper-Security/ksm-action@54024615476123015b628a22341850b2087ab297 # v1.3.1
         with:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
           secrets: |
@@ -33,11 +46,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SONAR_TOKEN: ${{env.SONAR_TOKEN}}
-        run: ./mvnw -B clean verify sonar:sonar
+        run: ./mvnw -B -ntp verify sonar:sonar
 
-      - run: mkdir staging && cp target/*.zip staging
+      - name: Stage the actor filter archive
+        run: mkdir staging && cp target/*.zip staging
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: Actorfilter
           path: staging
