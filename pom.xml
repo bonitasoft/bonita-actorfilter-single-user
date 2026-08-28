@@ -94,8 +94,8 @@
     <dependencies>
         <!-- Bonita -->
         <dependency>
-            <artifactId>bonita-common</artifactId>
             <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-common</artifactId>
             <scope>provided</scope>
         </dependency>
 
