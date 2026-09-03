@@ -42,6 +42,12 @@ jobs:
           secrets: |
             ${{ vars.KEEPER_SONARCLOUD_RECORD_ID }}/field/password > env:SONAR_TOKEN
 
+      # TODO Bonita 12.0 GA: remove this step once Bonita 12.0 is released on Maven Central (only needed to resolve runtime snapshots)
+      - name: Setup Maven settings
+        uses: bonitasoft/maven-settings-action@v2
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+
       - name: Build and test
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

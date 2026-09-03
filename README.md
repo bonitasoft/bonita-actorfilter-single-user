@@ -6,6 +6,13 @@
 
 Bonita Actor Filter that filter users of an actor based on a single user Id.
 
+## Compatibility
+
+| Actor filter               | Bonita        | Java          |
+|----------------------------|---------------|---------------|
+| 2.x (`master`)             | 12.0 and later | 17 and later |
+| 1.x (`support/1.0.x`)      | 7.14 to 11.x  | 11 and later  |
+
 ## Build
 
 __Clone__ or __fork__ this repository, then at the root of the project run:
