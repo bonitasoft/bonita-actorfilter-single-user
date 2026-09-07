@@ -60,7 +60,7 @@
         <gmavenplus-plugin.version>5.1.0</gmavenplus-plugin.version>
 
         <!-- Groovy, used by the build scripts -->
-        <groovy.version>4.0.32</groovy.version>
+        <groovy.version>5.1.1</groovy.version>
 
         <!-- Publishing and quality plumbing, not part of the archetype template -->
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
