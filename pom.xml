@@ -53,7 +53,7 @@
         <logback-classic.version>1.6.3</logback-classic.version>
 
         <!-- Maven plugins -->
-        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <maven-surefire.version>3.5.6</maven-surefire.version>
